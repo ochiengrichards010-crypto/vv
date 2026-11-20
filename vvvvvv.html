@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chianda Senior School – Student Council Elections</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;600;800&display=swap">
+<style>
+:root{--bg:#EEF1F5;--surface:#fff;--ink:#14213D;--mute:#5B6678;--line:#D5DBE5;--red:#C8102E;--green:#17804A;--bar:#2A4B8D;--soft:#E3E9F4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0F1522;--surface:#18202F;--ink:#E8ECF4;--mute:#9AA6BA;--line:#2B3549;--red:#FF5A72;--green:#4CC98A;--bar:#7FA2E8;--soft:#222C40}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0F1522;--surface:#18202F;--ink:#E8ECF4;--mute:#9AA6BA;--line:#2B3549;--red:#FF5A72;--green:#4CC98A;--bar:#7FA2E8;--soft:#222C40}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:var(--ink);color:var(--bg);padding:18px 20px 0}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:800;margin:0;letter-spacing:-.01em}
+.sub{margin:2px 0 14px;opacity:.75;font-size:.95rem}
+nav{display:flex;gap:4px}
+nav button{background:transparent;border:0;color:inherit;opacity:.65;font:600 1rem inherit;font-family:inherit;padding:10px 18px;border-radius:10px 10px 0 0;cursor:pointer}
+nav button[aria-selected=true]{background:var(--bg);color:var(--ink);opacity:1}
+main{max-width:900px;margin:0 auto;padding:22px 16px 60px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+h2{font-size:1.25rem;margin:0 0 4px}h3{font-size:1.05rem;margin:0 0 8px}
+p{margin:6px 0}.mute{color:var(--mute);font-size:.92rem}
+label{display:block;font-weight:600;margin:12px 0 4px}
+input,textarea,select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+textarea{min-height:110px}
+button.b{font:600 1rem inherit;font-family:inherit;background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:11px 18px;cursor:pointer}
+button.b.red{background:var(--red);color:#fff}button.b.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button.b.sm{padding:6px 11px;font-size:.88rem}
+:focus-visible{outline:3px solid var(--bar);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1 1 140px}.row>.b{flex:0 0 auto}
+.status{display:inline-block;padding:3px 12px;border-radius:99px;font-weight:600;font-size:.9rem}
+.open{background:var(--green);color:#fff}.closed{background:var(--red);color:#fff}
+.opt{display:flex;gap:12px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;cursor:pointer}
+.opt:has(input:checked){border-color:var(--ink);background:var(--soft)}
+.opt input{width:22px;height:22px;flex:none;accent-color:var(--ink)}
+.opt b{display:block}.opt span{color:var(--mute);font-size:.88rem}
+.msg{padding:10px 14px;border-radius:10px;margin:12px 0;font-weight:600}
+.err{background:#FBE3E7;color:#8A0B20}.ok{background:#DDF3E6;color:#0E5C34}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{background:#4A1B25;color:#FFC2CC}:root:not([data-theme="light"]) .ok{background:#17402B;color:#B6F0D0}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat b{font-size:1.9rem;font-weight:800;display:block;line-height:1.1}
+.bar{height:26px;background:var(--soft);border-radius:8px;overflow:hidden;position:relative}
+.bar i{display:block;height:100%;background:var(--bar)}
+.bar.win i{background:var(--green)}
+.cr{display:grid;grid-template-columns:minmax(110px,1.2fr) 3fr 90px;gap:10px;align-items:center;margin:8px 0}
+.tbl{width:100%;border-collapse:collapse;font-size:.95rem}.tbl th,.tbl td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+.tbl-scroll{overflow-x:auto}
+.tag{font-size:.8rem;padding:2px 8px;border-radius:99px;background:var(--green);color:#fff;margin-left:6px;font-weight:600}
+.tag.tie{background:var(--red)}
+.big{font-size:1.5rem;font-weight:800}
+@media print{header,nav,.noprint{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<h1>Chianda Senior School</h1>
+<p class="sub">Student Council Elections – voting and analysis</p>
+<nav role="tablist" id="nav"></nav>
+</div></header>
+<main id="app"></main>
+
+<script>
+const KEY='chianda_vote_v1';
+const ADMIN_USER='chianda.votingsystem',ADMIN_PASS='Chiandasnr@admin';
+const DEF={open:false,positions:[
+{id:'p1',name:'School Captain',cands:[]},{id:'p2',name:'Deputy School Captain',cands:[]},
+{id:'p3',name:'Academics Prefect',cands:[]},{id:'p4',name:'Sports Prefect',cands:[]},
+{id:'p5',name:'Environment Prefect',cands:[]}],voters:{},ballots:[]};
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))||null}catch(e){S=null}
+if(!S)S=JSON.parse(JSON.stringify(DEF));
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,8);
+let tab='vote',auth=false,V={step:'id',adm:'',err:'',choices:{}},A={msg:''},timer;
+
+function render(){
+ $('#nav').innerHTML=[['vote','Vote'],['results','Results'],['admin','Admin']].map(([k,l])=>`<button role="tab" aria-selected="${tab===k}" data-tab="${k}">${l}</button>`).join('');
+ $('#app').innerHTML=tab==='vote'?vote():tab==='results'?(auth?results():login()):(auth?admin():login());
+}
+function login(){return `<div class="card"><h2>Election officer sign-in</h2><p class="mute">Results and settings are private to the election officer.</p>
+<label for="user">Username</label><input id="user" autocomplete="username" autocapitalize="none" spellcheck="false">
+<label for="pw">Password</label><div class="row"><input id="pw" type="password" autocomplete="current-password"><button class="b" data-act="login">Sign in</button></div>${A.msg?`<div class="msg err">${A.msg}</div>`:''}</div>`}
+
+/* ---------- Voting ---------- */
+function vote(){
+ if(!S.open)return `<div class="card"><h2>Voting is closed</h2><p>Voting has not started or has ended. Ask the election officer to open voting.</p></div>`;
+ if(V.step==='done')return `<div class="card" style="text-align:center"><div class="big" style="color:var(--green)">Vote recorded</div><p>Thank you for voting. Your choices are anonymous.</p><button class="b" data-act="next">Next voter</button></div>`;
+ if(V.step==='ballot'){
+  const v=S.voters[V.adm];
+  const ps=S.positions.filter(p=>p.cands.length);
+  if(!ps.length)return `<div class="card"><h2>No candidates yet</h2><p>The election officer must add candidates first.</p></div>`;
+  return `<div class="card"><h2>Ballot for ${esc(v.name)}</h2><p class="mute">Choose one candidate per position. Select “Abstain” to skip a position.</p></div>`+
+  ps.map(p=>`<div class="card"><h3>${esc(p.name)}</h3>`+p.cands.map(c=>`<label class="opt"><input type="radio" name="${p.id}" value="${c.id}" ${V.choices[p.id]===c.id?'checked':''}><div><b>${esc(c.name)}</b><span>${esc(c.cls||'')}</span></div></label>`).join('')+
+  `<label class="opt"><input type="radio" name="${p.id}" value="abstain" ${V.choices[p.id]==='abstain'?'checked':''}><div><b>Abstain</b></div></label></div>`).join('')+
+  (V.err?`<div class="msg err">${V.err}</div>`:'')+`<div class="row"><button class="b red" data-act="cast">Cast my vote</button><button class="b ghost" data-act="next">Cancel</button></div>`;
+ }
+ return `<div class="card"><h2>Enter your admission number</h2><p class="mute">Each student can vote once.</p><label for="adm">Admission number</label><div class="row"><input id="adm" autocomplete="off" value="${esc(V.adm)}"><button class="b" data-act="check">Continue</button></div>${V.err?`<div class="msg err">${V.err}</div>`:''}</div>`;
+}
+
+/* ---------- Results ---------- */
+function tally(){
+ const t={};S.positions.forEach(p=>{t[p.id]={abstain:0,total:0};p.cands.forEach(c=>t[p.id][c.id]=0)});
+ S.ballots.forEach(b=>{for(const pid in b){if(!t[pid])continue;t[pid].total++;if(b[pid]==='abstain')t[pid].abstain++;else if(t[pid][b[pid]]!==undefined)t[pid][b[pid]]++}});
+ return t;
+}
+function results(){
+ const reg=Object.keys(S.voters).length,voted=Object.values(S.voters).filter(v=>v.voted).length,pct=reg?Math.round(voted/reg*100):0;
+ const t=tally();
+ const byCls={};Object.values(S.voters).forEach(v=>{const k=v.cls||'Unassigned';byCls[k]=byCls[k]||{r:0,v:0};byCls[k].r++;if(v.voted)byCls[k].v++});
+ let h=`<div class="stats"><div class="stat"><b>${reg}</b>Registered voters</div><div class="stat"><b>${voted}</b>Votes cast</div><div class="stat"><b>${pct}%</b>Turnout</div><div class="stat"><b>${reg-voted}</b>Yet to vote</div></div>
+ <div class="row noprint" style="margin-bottom:14px"><button class="b" data-act="csv">Download CSV</button><button class="b ghost" data-act="print">Print report</button><button class="b ghost" data-act="rerender">Refresh</button></div>`;
+ S.positions.forEach(p=>{
+  const r=t[p.id];if(!p.cands.length)return;
+  const rows=p.cands.map(c=>({c,n:r[c.id]})).sort((a,b)=>b.n-a.n);
+  const top=rows[0].n,leaders=rows.filter(x=>x.n===top);
+  const valid=rows.reduce((s,x)=>s+x.n,0);
+  const margin=rows.length>1?top-rows[1].n:top;
+  let status='';
+  if(!valid)status='<span class="mute">No votes yet</span>';
+  else if(leaders.length>1)status=`<span class="tag tie">Tie – ${leaders.length} candidates on ${top} votes</span>`;
+  else status=`<span class="tag">Leading: ${esc(leaders[0].c.name)}</span> <span class="mute">margin ${margin} vote${margin===1?'':'s'}</span>`;
+  h+=`<div class="card"><h3>${esc(p.name)} ${status}</h3>`+rows.map(x=>{const w=valid?Math.round(x.n/valid*1000)/10:0,win=valid&&x.n===top&&leaders.length===1;
+   return `<div class="cr"><div><b>${esc(x.c.name)}</b><div class="mute">${esc(x.c.cls||'')}</div></div><div class="bar ${win?'win':''}"><i style="width:${w}%"></i></div><div><b>${x.n}</b> <span class="mute">${w}%</span></div></div>`}).join('')+
+   `<p class="mute">Abstained: ${r.abstain} · Ballots counted for this position: ${r.total}</p></div>`;
+ });
+ h+=`<div class="card"><h3>Turnout by class</h3><div class="tbl-scroll"><table class="tbl"><tr><th>Class</th><th>Registered</th><th>Voted</th><th>Turnout</th></tr>`+
+  Object.keys(byCls).sort().map(k=>{const x=byCls[k],p=Math.round(x.v/x.r*100);return `<tr><td>${esc(k)}</td><td>${x.r}</td><td>${x.v}</td><td style="min-width:140px"><div class="bar"><i style="width:${p}%"></i></div> ${p}%</td></tr>`}).join('')||'<tr><td colspan="4" class="mute">No voters registered.</td></tr>';
+ h+=`</table></div></div>`;
+ return h;
+}
+
+/* ---------- Admin ---------- */
+function admin(){
+ const reg=Object.keys(S.voters).length;
+ let h=`<div class="card"><h2>Election status <span class="status ${S.open?'open':'closed'}">${S.open?'Voting open':'Voting closed'}</span></h2>
+ <p class="mute">${reg} voters registered · ${S.ballots.length} ballots cast</p>
+ <div class="row"><button class="b ${S.open?'red':''}" data-act="toggle">${S.open?'Close voting':'Open voting'}</button><button class="b ghost" data-act="logout">Sign out</button></div>${A.msg?`<div class="msg ok">${A.msg}</div>`:''}</div>`;
+ h+=`<div class="card"><h2>Positions and candidates</h2>`+S.positions.map(p=>`<div style="border-top:1px solid var(--line);padding:10px 0"><div class="row"><b style="flex:1 1 auto">${esc(p.name)}</b><button class="b ghost sm" data-act="delpos" data-id="${p.id}">Remove position</button></div>`+
+  p.cands.map(c=>`<div class="row" style="margin:4px 0"><span style="flex:1 1 auto">${esc(c.name)} <span class="mute">${esc(c.cls||'')}</span></span><button class="b ghost sm" data-act="delcand" data-id="${p.id}" data-cid="${c.id}">Remove</button></div>`).join('')+
+  `<div class="row" style="margin-top:6px"><input placeholder="Candidate name" id="cn-${p.id}"><input placeholder="Class (e.g. Form 3 East)" id="cc-${p.id}"><button class="b sm" data-act="addcand" data-id="${p.id}">Add candidate</button></div></div>`).join('')+
+  `<div class="row" style="margin-top:10px"><input id="np" placeholder="New position name"><button class="b" data-act="addpos">Add position</button></div></div>`;
+ h+=`<div class="card"><h2>Voter register</h2><p class="mute">Paste one student per line: admission number, name, class. Format: <code>admission number, full name, class</code></p>
+ <textarea id="reg" placeholder="admission number, full name, class"></textarea><div class="row" style="margin-top:8px"><button class="b" data-act="addreg">Add to register</button></div></div>`;
+ h+=`<div class="card"><h2>Reset</h2>
+ <div class="row"><button class="b red" data-act="resetvotes">Clear all votes</button><button class="b red" data-act="resetall">Reset everything</button></div></div>`;
+ return h;
+}
+
+/* ---------- Actions ---------- */
+function csv(){
+ const t=tally();let o='Position,Candidate,Votes\n';
+ S.positions.forEach(p=>{p.cands.forEach(c=>o+=`"${p.name}","${c.name}",${t[p.id][c.id]}\n`);o+=`"${p.name}","Abstain",${t[p.id].abstain}\n`});
+ const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(o);a.download='chianda-election-results.csv';a.click();
+}
+document.addEventListener('click',e=>{
+ const tb=e.target.closest('[data-tab]');if(tb){tab=tb.dataset.tab;A.msg='';render();return}
+ const el=e.target.closest('[data-act]');if(!el)return;
+ const act=el.dataset.act,id=el.dataset.id;
+ if(act==='login'){if($('#user').value.trim()===ADMIN_USER&&$('#pw').value===ADMIN_PASS){auth=true;A.msg=''}else A.msg='Incorrect username or password.'}
+ else if(act==='logout'){auth=false;tab='vote'}
+ else if(act==='toggle'){S.open=!S.open;if(S.open&&!S.positions.some(p=>p.cands.length)){S.open=false;A.msg='Add candidates before opening voting.'}else A.msg=S.open?'Voting is now open.':'Voting is now closed.'}
+ else if(act==='addpos'){const v=$('#np').value.trim();if(v){S.positions.push({id:uid(),name:v,cands:[]});A.msg=''}}
+ else if(act==='delpos'){if(confirm('Remove this position and its candidates?')){S.positions=S.positions.filter(p=>p.id!==id);S.ballots.forEach(b=>delete b[id])}}
+ else if(act==='addcand'){const n=$('#cn-'+id).value.trim();if(n){S.positions.find(p=>p.id===id).cands.push({id:uid(),name:n,cls:$('#cc-'+id).value.trim()});A.msg=''}}
+ else if(act==='delcand'){const p=S.positions.find(p=>p.id===id);if(confirm('Remove this candidate? Votes already cast for them will be lost.')){p.cands=p.cands.filter(c=>c.id!==el.dataset.cid);S.ballots.forEach(b=>{if(b[id]===el.dataset.cid)delete b[id]})}}
+ else if(act==='addreg'){let n=0;$('#reg').value.split('\n').forEach(l=>{const [a,nm,c]=l.split(',').map(s=>s.trim());if(a&&nm&&!S.voters[a]){S.voters[a]={name:nm,cls:c||'',voted:false};n++}});A.msg=n+' voter'+(n===1?'':'s')+' added.'}
+ else if(act==='resetvotes'){if(confirm('Clear every vote and let all students vote again?')){S.ballots=[];Object.values(S.voters).forEach(v=>v.voted=false);A.msg='All votes cleared.'}}
+ else if(act==='resetall'){if(confirm('Delete all positions, candidates, voters and votes?')){S=JSON.parse(JSON.stringify(DEF));A.msg='Everything reset.'}}
+ else if(act==='check'){
+  const a=$('#adm').value.trim();V.adm=a;const v=S.voters[a];
+  if(!v)V.err='Admission number not found in the voter register.';
+  else if(v.voted)V.err='This admission number has already voted.';
+  else{V.err='';V.step='ballot';V.choices={}}
+ }
+ else if(act==='cast'){
+  const ps=S.positions.filter(p=>p.cands.length),ch={};let miss=0;
+  ps.forEach(p=>{const r=document.querySelector(`input[name="${p.id}"]:checked`);if(r)ch[p.id]=r.value;else miss++});
+  V.choices=ch;
+  if(miss){V.err=`Select an option for every position (${miss} left).`}
+  else if(S.voters[V.adm].voted){V.err='Already voted.'}
+  else{S.ballots.push(ch);S.voters[V.adm].voted=true;V.step='done';V.err='';V.adm='';clearTimeout(timer);timer=setTimeout(()=>{if(V.step==='done'){V={step:'id',adm:'',err:'',choices:{}};render()}},8000)}
+ }
+ else if(act==='next'){V={step:'id',adm:'',err:'',choices:{}}}
+ else if(act==='csv'){csv();return}
+ else if(act==='print'){window.print();return}
+ save();render();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'){const i=e.target.id;if(i==='adm')document.querySelector('[data-act=check]').click();if(i==='pw'||i==='user')document.querySelector('[data-act=login]').click()}});
+render();
+</script>
+</body>
+</html>
